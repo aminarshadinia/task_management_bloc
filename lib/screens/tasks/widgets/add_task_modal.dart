@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:task_management_bloc/models/task.dart';
+import 'package:task_management_bloc/services/guid_generator.dart';
 
 import '../../../application/blocs_export.dart';
 
@@ -39,7 +40,8 @@ class AddTaskModal extends StatelessWidget {
               ),
               ElevatedButton(
                 onPressed: () {
-                  var task = Task(title: titleController.text);
+                  var task =
+                      Task(title: titleController.text, id: GUIDGen.generate());
                   context.read<TasksBloc>().add(AddTask(task: task));
                   Navigator.pop(context);
                 },
